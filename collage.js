@@ -83,19 +83,19 @@ function drawImageCrop(ctx, image, crop, width, height) {
 }
 
 function pieceAnimation(piece, time) {
-  const phase = time / 700 + piece.order * 0.7;
-  if (piece.motion === "swing") return { x: 0, y: 0, rotation: Math.sin(phase) * 0.12, scale: 1 };
-  if (piece.motion === "float") return { x: 0, y: Math.sin(phase) * 10, rotation: 0, scale: 1 };
-  if (piece.motion === "pulse") return { x: 0, y: 0, rotation: 0, scale: 1 + Math.sin(phase) * 0.08 };
-  if (piece.motion === "spin") return { x: 0, y: 0, rotation: time / 2200, scale: 1 };
+  const phase = time / 560 + piece.order * 0.7;
+  if (piece.motion === "swing") return { x: 0, y: 0, rotation: Math.sin(phase) * 0.15, scale: 1 };
+  if (piece.motion === "float") return { x: 0, y: Math.sin(phase) * 13, rotation: 0, scale: 1 };
+  if (piece.motion === "pulse") return { x: 0, y: 0, rotation: 0, scale: 1 + Math.sin(phase) * 0.1 };
+  if (piece.motion === "spin") return { x: 0, y: 0, rotation: time / 1700, scale: 1 };
   return { x: 0, y: 0, rotation: 0, scale: 1 };
 }
 
 function overallAnimation(type, time) {
-  const phase = time / 900;
-  if (type === "float") return { x: 0, y: Math.sin(phase) * 9, rotation: 0, scale: 1 };
-  if (type === "sway") return { x: 0, y: 0, rotation: Math.sin(phase) * 0.035, scale: 1 };
-  if (type === "breathe") return { x: 0, y: 0, rotation: 0, scale: 1 + Math.sin(phase) * 0.025 };
+  const phase = time / 720;
+  if (type === "float") return { x: 0, y: Math.sin(phase) * 12, rotation: 0, scale: 1 };
+  if (type === "sway") return { x: 0, y: 0, rotation: Math.sin(phase) * 0.05, scale: 1 };
+  if (type === "breathe") return { x: 0, y: 0, rotation: 0, scale: 1 + Math.sin(phase) * 0.035 };
   return { x: 0, y: 0, rotation: 0, scale: 1 };
 }
 
