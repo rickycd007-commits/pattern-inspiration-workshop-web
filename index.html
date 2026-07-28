@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#fffaf0">
+  <title>纹样灵感工坊</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">纹</span>
+        <span>
+          <strong>纹样灵感工坊</strong>
+          <small>把传统灵感，变成自己的作品</small>
+        </span>
+      </div>
+      <nav class="steps" aria-label="创作步骤">
+        <button data-stage="design" class="step active"><b>1</b><span>开始创作</span></button>
+        <i></i>
+        <button data-stage="fitting" class="step"><b>2</b><span>角色试穿</span></button>
+        <i></i>
+        <button data-stage="poster" class="step"><b>3</b><span>收藏作品</span></button>
+      </nav>
+      <div class="top-actions">
+        <button id="soundToggle" class="round-action" aria-label="开关音效">🔊</button>
+        <button id="fullscreenButton" class="screen-action">▣ 全屏创作</button>
+      </div>
+    </header>
+
+    <main id="designStage" class="stage-page active">
+      <section class="modebar card">
+        <div class="route-tabs">
+          <button data-route="template" class="route active">👕 模板设计</button>
+          <button data-route="free" class="route">✂ 自由拼剪</button>
+        </div>
+        <div id="currentLabel" class="current-label">上衣 · 交领短衫</div>
+        <label id="guideControl" class="check-control">
+          <input id="guideToggle" type="checkbox" checked>
+          <span>显示轮廓</span>
+        </label>
+        <button id="progressChip" class="progress-chip">小衣橱 <b>0/3</b></button>
+      </section>
+
+      <section id="templateWorkspace" class="workspace">
+        <aside class="materials card">
+          <div class="panel-title"><strong>素材</strong><small>挑选灵感</small></div>
+          <div class="material-tabs">
+            <button data-tab="garment" class="active">👕<span>衣型</span></button>
+            <button data-tab="fabric">▦<span>花布</span></button>
+            <button data-tab="motif">✿<span>纹样</span></button>
+          </div>
+          <div id="materialList" class="material-list"></div>
+          <input id="materialUpload" type="file" accept="image/*" hidden>
+        </aside>
+
+        <section class="canvas-card card">
+          <div class="canvas-heading">
+            <span id="canvasTag">上衣 · 交领短衫</span>
+            <div id="selectionTools" class="selection-tools hidden">
+              <button data-adjust="smaller">小一点</button>
+              <button data-adjust="larger">大一点</button>
+              <button data-adjust="rotate">转一转</button>
+              <button data-adjust="forward">放上层</button>
+              <button data-adjust="delete">移除</button>
+            </div>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="designCanvas"></canvas>
+            <div class="zoom-control">
+              <button data-zoom="out">−</button><span id="designZoomLabel">100%</span><button data-zoom="in">＋</button>
+            </div>
+          </div>
+          <div id="garmentNav" class="garment-nav"></div>
+        </section>
+
+        <aside class="tools card">
+          <div class="panel-title"><strong>创作工具</strong><small>点一下使用</small></div>
+          <div id="toolList" class="tool-list"></div>
+          <div id="palette" class="palette hidden"></div>
+          <div class="closet">
+            <div><strong>三件进度</strong><b id="progressText">0/3</b></div>
+            <div class="progress-bar"><i id="progressFill"></i></div>
+            <div id="closetList" class="closet-list"></div>
+          </div>
+          <button id="completeGarment" class="primary">✓ 收好当前款</button>
+          <button id="goFitting" class="secondary" disabled>完成三件后试穿</button>
+        </aside>
+      </section>
+
+      <section id="freeWorkspace" class="workspace hidden">
+        <aside class="materials card">
+          <div class="panel-title"><strong>拼剪素材</strong><small>选择花布或纹样</small></div>
+          <div class="material-tabs two">
+            <button data-free-tab="fabric" class="active">▦<span>花布</span></button>
+            <button data-free-tab="motif">✿<span>纹样</span></button>
+          </div>
+          <div id="freeMaterialList" class="material-list"></div>
+          <input id="freeMaterialUpload" type="file" accept="image/*" hidden>
+        </aside>
+
+        <section class="canvas-card card">
+          <div class="canvas-heading">
+            <span id="freeTitle">① 选择素材，再画出想要的形状</span>
+            <span id="pieceCount" class="piece-count">0 个拼剪部件</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="freeCanvas"></canvas>
+            <div id="freeHint" class="canvas-hint">在左侧挑一块花布或纹样</div>
+          </div>
+          <div id="freeStageNav" class="free-stage-nav">
+            <button data-free-stage="cut" class="active"><b>1</b>自由裁切</button>
+            <button data-free-stage="compose"><b>2</b>拼搭组合</button>
+            <button data-free-stage="showcase"><b>3</b>动态展示</button>
+          </div>
+        </section>
+
+        <aside class="tools card">
+          <div class="panel-title"><strong id="freeToolTitle">裁切工具</strong><small>鼠标和手指都能操作</small></div>
+          <div id="cutActions" class="action-stack">
+            <p>沿着素材画一个闭合形状，松手后确认裁片。</p>
+            <button id="retryCut" class="secondary" disabled>重新画</button>
+            <button id="confirmCut" class="primary" disabled>加入拼搭画布</button>
+          </div>
+          <div id="composeActions" class="action-stack hidden">
+            <div class="grid-actions">
+              <button data-piece-action="smaller">➖ 小一点</button>
+              <button data-piece-action="larger">➕ 大一点</button>
+              <button data-piece-action="rotate">↻ 旋转</button>
+              <button data-piece-action="forward">⬆ 放上层</button>
+              <button data-piece-action="copy">⧉ 复制</button>
+              <button data-piece-action="delete">⌫ 删除</button>
+            </div>
+            <label>部件动作
+              <select id="pieceMotion">
+                <option value="none">不动</option>
+                <option value="swing">轻轻摇摆</option>
+                <option value="float">上下漂浮</option>
+                <option value="pulse">呼吸放大</option>
+                <option value="spin">慢慢旋转</option>
+              </select>
+            </label>
+            <button id="addMorePiece" class="secondary">＋ 再剪一个部件</button>
+            <button id="goShowcase" class="primary">完成拼搭 · 看动画</button>
+          </div>
+          <div id="showcaseActions" class="action-stack hidden">
+            <label>整体动画
+              <select id="overallMotion">
+                <option value="float">上下漂浮</option>
+                <option value="sway">左右摇摆</option>
+                <option value="breathe">轻轻呼吸</option>
+                <option value="none">静止</option>
+              </select>
+            </label>
+            <button id="playAnimation" class="secondary">⏸ 暂停动画</button>
+            <button id="editCollage" class="secondary">← 回去调整</button>
+            <button id="saveCollage" class="primary">↓ 保存拼剪作品</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <main id="fittingStage" class="stage-page">
+      <section class="scene-layout">
+        <aside class="role-panel card">
+          <div class="eyebrow">故事角色</div>
+          <h2>请谁来试穿？</h2>
+          <div id="roleList" class="role-list"></div>
+          <button id="backToDesign" class="secondary">← 回创作桌修改</button>
+        </aside>
+        <section class="scene-card card">
+          <div class="scene-title"><span><small>新衣亮相</small><strong id="fittingTitle">渔家福娃正在试穿</strong></span><em>✓ 自动贴合完成</em></div>
+          <div class="scene-canvas-wrap">
+            <canvas id="fittingCanvas"></canvas>
+            <div class="zoom-control">
+              <button data-fit-zoom="out">−</button><span id="fitZoomLabel">100%</span><button data-fit-zoom="in">＋</button>
+            </div>
+          </div>
+          <p class="scene-tip">滚动鼠标滚轮或双指缩放，放大后可拖动画面查看纹样。</p>
+        </section>
+        <aside class="wear-panel card">
+          <div class="eyebrow">成品衣橱</div>
+          <h2>点击穿上或脱下</h2>
+          <div id="wearList" class="wear-list"></div>
+          <button id="wearAll" class="secondary">一键穿上整套</button>
+          <button id="goPoster" class="primary">完成搭配 · 生成海报</button>
+        </aside>
+      </section>
+    </main>
+
+    <main id="posterStage" class="stage-page">
+      <section class="poster-layout">
+        <section class="poster-card card">
+          <div class="scene-title"><span><small>作品画报</small><strong>给今天的创意留个纪念</strong></span><em>✦ 高清画报已生成</em></div>
+          <canvas id="posterCanvas"></canvas>
+        </section>
+        <aside class="poster-settings card">
+          <div class="eyebrow">最后一步</div>
+          <h2>写下作品故事</h2>
+          <label>作品名字<input id="workTitle" value="我的纹样新衣" maxlength="18"></label>
+          <label class="toggle-row"><span>画报显示文字<small>作品名、角色名和纹样</small></span><input id="showInfo" type="checkbox" checked></label>
+          <button id="savePoster" class="primary">↓ 保存高清画报</button>
+          <button id="changeRole" class="secondary">换个角色看看</button>
+          <button id="restart" class="text-button">开始一件新作品</button>
+        </aside>
+      </section>
+    </main>
+  </div>
+  <div id="toast" role="status"></div>
+  <script src="./fittedPaths.js"></script>
+  <script src="./art.js"></script>
+  <script src="./collage.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
