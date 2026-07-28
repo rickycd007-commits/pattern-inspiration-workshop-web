@@ -63,7 +63,7 @@
     selectedTool: "brush",
     selectedColor: COLORS[0],
     selectedPattern: -1,
-    designZoom: 1,
+    designZoom: 1.55,
     sound: true,
     activeRole: "fisher",
     worn: { top: true, bottom: true, outer: true },
@@ -122,6 +122,8 @@
   const roleImages = {};
   let posterBackground = null;
   let pointerState = null;
+  const designPointers = new Map();
+  let designPinch = null;
   let fitPointer = null;
   let animationFrame = 0;
   let toastTimer = 0;
@@ -284,6 +286,11 @@
     $("#selectionTools").classList.toggle("hidden", state.selectedPattern < 0);
   }
 
+  function setDesignZoom(value) {
+    state.designZoom = Math.max(.8, Math.min(2, value));
+    renderDesignCanvas();
+  }
+
   function renderAllDesignUI() {
     const label = LABELS[state.activeGarment].name;
     const variant = VARIANT_NAMES[activeVariant().id];
@@ -394,6 +401,24 @@
 
   function designPointerDown(event) {
     canvas.setPointerCapture(event.pointerId);
+    if (event.pointerType === "touch") {
+      designPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      if (designPointers.size >= 2) {
+        if (pointerState?.kind === "stroke") {
+          const design = currentDesign();
+          const index = design.strokes.indexOf(pointerState.stroke);
+          if (index >= 0) design.strokes.splice(index, 1);
+          state.undo[state.activeGarment].pop();
+        }
+        pointerState = null;
+        const [first, second] = Array.from(designPointers.values());
+        designPinch = {
+          distance: Math.max(1, Math.hypot(second.x - first.x, second.y - first.y)),
+          zoom: state.designZoom
+        };
+        return;
+      }
+    }
     const point = pointOnCanvas(event, canvas);
     const design = currentDesign();
     const hit = hitPattern(point);
@@ -427,6 +452,15 @@
   }
 
   function designPointerMove(event) {
+    if (event.pointerType === "touch" && designPointers.has(event.pointerId)) {
+      designPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      if (designPinch && designPointers.size >= 2) {
+        const [first, second] = Array.from(designPointers.values());
+        const distance = Math.max(1, Math.hypot(second.x - first.x, second.y - first.y));
+        setDesignZoom(designPinch.zoom * distance / designPinch.distance);
+        return;
+      }
+    }
     if (!pointerState) return;
     const point = pointOnCanvas(event, canvas);
     if (pointerState.kind === "pattern") {
@@ -441,7 +475,15 @@
     renderDesignCanvas();
   }
 
-  function designPointerUp() {
+  function designPointerUp(event) {
+    if (event?.pointerType === "touch") {
+      designPointers.delete(event.pointerId);
+      if (designPinch) {
+        if (designPointers.size < 2) designPinch = null;
+        pointerState = null;
+        return;
+      }
+    }
     pointerState = null;
   }
 
@@ -817,8 +859,7 @@
       }
       if (target.dataset.adjust) adjustPattern(target.dataset.adjust);
       if (target.dataset.zoom) {
-        state.designZoom = Math.max(.8, Math.min(1.6, state.designZoom + (target.dataset.zoom === "in" ? .15 : -.15)));
-        renderDesignCanvas();
+        setDesignZoom(state.designZoom + (target.dataset.zoom === "in" ? .15 : -.15));
       }
       if (target.dataset.freeTab) {
         state.freeMaterialTab = target.dataset.freeTab;
@@ -891,6 +932,24 @@
     canvas.addEventListener("pointermove", designPointerMove);
     canvas.addEventListener("pointerup", designPointerUp);
     canvas.addEventListener("pointercancel", designPointerUp);
+    canvas.addEventListener("wheel", (event) => {
+      event.preventDefault();
+      setDesignZoom(state.designZoom * (event.deltaY < 0 ? 1.08 : .92));
+    }, { passive: false });
+    document.addEventListener("keydown", (event) => {
+      if (state.stage !== "design" || state.route !== "template") return;
+      if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName)) return;
+      if (["+", "="].includes(event.key)) {
+        event.preventDefault();
+        setDesignZoom(state.designZoom + .15);
+      } else if (["-", "_"].includes(event.key)) {
+        event.preventDefault();
+        setDesignZoom(state.designZoom - .15);
+      } else if (event.key === "0") {
+        event.preventDefault();
+        setDesignZoom(1.55);
+      }
+    });
 
     freeCanvas.addEventListener("pointerdown", freePointerDown);
     freeCanvas.addEventListener("pointermove", freePointerMove);
