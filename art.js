@@ -179,7 +179,7 @@ const OUTFIT_FIT = {
 const ROLE_FIT = {
   fisher: { x: 0, y: 0, w: 0, h: 0 },
   fairy: { x: 0, y: 0, w: 0, h: 0 },
-  guardian: { x: 0, y: 0, w: 0, h: 0 }
+  guardian: { x: 0, y: 0.022, w: -0.018, h: -0.005 }
 };
 
 function garmentSpec(garmentType, variantId) {
