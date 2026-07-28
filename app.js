@@ -720,6 +720,12 @@
   }
 
   function renderFittingCanvas() {
+    const fittingWrap = fitCanvas.parentElement;
+    const fittingSize = Math.min(fittingWrap.clientWidth, fittingWrap.clientHeight);
+    if (fittingSize > 0) {
+      fitCanvas.style.width = `${fittingSize}px`;
+      fitCanvas.style.height = `${fittingSize}px`;
+    }
     drawCharacterScene(fitCtx, roleImages[state.activeRole], sceneDesigns(), fitCanvas.width, fitCanvas.height, {
       textureImages: imageMap,
       roleId: state.activeRole,
@@ -939,6 +945,9 @@
     });
     fitCanvas.addEventListener("pointerup", () => { fitPointer = null; });
     fitCanvas.addEventListener("pointercancel", () => { fitPointer = null; });
+    window.addEventListener("resize", () => {
+      if (state.stage === "fitting") renderFittingCanvas();
+    });
   }
 
   function init() {

@@ -176,7 +176,8 @@ h2 { margin: 6px 0 16px; font: 700 26px "STKaiti", "KaiTi", serif; }
 .scene-title { display: flex; align-items: flex-start; justify-content: space-between; }
 .scene-title strong { display: block; margin-top: 4px; font: 700 24px "STKaiti", "KaiTi", serif; }
 .scene-title em { font-style: normal; background: #e9f5ef; border-radius: 18px; padding: 8px 12px; font-size: 12px; }
-.scene-canvas-wrap { position: relative; min-height: 0; border: 1px solid #d6ddd4; border-radius: 24px; overflow: hidden; background: #fffdf7; }
+.scene-canvas-wrap { position: relative; min-height: 0; display: grid; place-items: center; border: 1px solid #d6ddd4; border-radius: 24px; overflow: hidden; background: #fffdf7; }
+#fittingCanvas { object-fit: contain; }
 .scene-tip { text-align: center; color: #839189; font-size: 12px; margin: 8px 0 0; }
 .wear-panel { display: flex; flex-direction: column; }
 .wear-list { display: grid; gap: 10px; }
