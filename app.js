@@ -456,7 +456,9 @@
         const [first, second] = Array.from(designPointers.values());
         designPinch = {
           distance: Math.max(1, Math.hypot(second.x - first.x, second.y - first.y)),
-          zoom: state.designZoom
+          zoom: state.designZoom,
+          patternIndex: state.selectedPattern,
+          patternSize: currentDesign().patterns[state.selectedPattern]?.size || 0
         };
         return;
       }
@@ -499,7 +501,13 @@
       if (designPinch && designPointers.size >= 2) {
         const [first, second] = Array.from(designPointers.values());
         const distance = Math.max(1, Math.hypot(second.x - first.x, second.y - first.y));
-        setDesignZoom(designPinch.zoom * distance / designPinch.distance);
+        if (designPinch.patternIndex >= 0 && currentDesign().patterns[designPinch.patternIndex]) {
+          state.selectedPattern = designPinch.patternIndex;
+          setPatternSize(currentDesign().patterns[designPinch.patternIndex], designPinch.patternSize * distance / designPinch.distance);
+          renderAllDesignUI();
+        } else {
+          setDesignZoom(designPinch.zoom * distance / designPinch.distance);
+        }
         return;
       }
     }
@@ -529,13 +537,27 @@
     pointerState = null;
   }
 
+  function setPatternSize(item, size) {
+    item.size = Math.max(25, Math.min(520, size));
+  }
+
+  function scaleSelectedPattern(factor, recordHistory = false) {
+    const design = currentDesign();
+    const item = design.patterns[state.selectedPattern];
+    if (!item) return false;
+    if (recordHistory) pushHistory();
+    setPatternSize(item, item.size * factor);
+    renderAllDesignUI();
+    return true;
+  }
+
   function adjustPattern(action) {
     const design = currentDesign();
     const item = design.patterns[state.selectedPattern];
     if (!item) return;
     pushHistory();
-    if (action === "smaller") item.size = Math.max(25, item.size * .86);
-    if (action === "larger") item.size = Math.min(380, item.size * 1.16);
+    if (action === "smaller") setPatternSize(item, item.size * .86);
+    if (action === "larger") setPatternSize(item, item.size * 1.16);
     if (action === "rotate") item.rotation += Math.PI / 8;
     if (action === "forward") {
       design.patterns.splice(state.selectedPattern, 1);
@@ -976,17 +998,20 @@
     canvas.addEventListener("pointercancel", designPointerUp);
     canvas.addEventListener("wheel", (event) => {
       event.preventDefault();
-      setDesignZoom(state.designZoom * (event.deltaY < 0 ? 1.08 : .92));
+      if (state.selectedPattern >= 0) scaleSelectedPattern(event.deltaY < 0 ? 1.08 : .92);
+      else setDesignZoom(state.designZoom * (event.deltaY < 0 ? 1.08 : .92));
     }, { passive: false });
     document.addEventListener("keydown", (event) => {
       if (state.stage !== "design" || state.route !== "template") return;
       if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName)) return;
       if (["+", "="].includes(event.key)) {
         event.preventDefault();
-        setDesignZoom(state.designZoom + .15);
+        if (state.selectedPattern >= 0) scaleSelectedPattern(1.12, true);
+        else setDesignZoom(state.designZoom + .15);
       } else if (["-", "_"].includes(event.key)) {
         event.preventDefault();
-        setDesignZoom(state.designZoom - .15);
+        if (state.selectedPattern >= 0) scaleSelectedPattern(.88, true);
+        else setDesignZoom(state.designZoom - .15);
       } else if (event.key === "0") {
         event.preventDefault();
         setDesignZoom(1.55);
