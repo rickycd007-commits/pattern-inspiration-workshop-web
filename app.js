@@ -28,24 +28,24 @@
     "short-vest": "短款坎肩"
   };
   const FABRICS = [
-    { type: "indigo", name: "蓝印花布", note: "靛蓝花纹", src: "./assets/textiles/indigo-burst-v1.jpg" },
-    { type: "coral", name: "牡丹花布", note: "朱红富贵", src: "./assets/textiles/coral-peony-v1.jpg" },
-    { type: "botanical", name: "花草棉布", note: "米白小花", src: "./assets/textiles/ivory-botanical-v1.jpg" },
-    { type: "cloudwater", name: "云水织锦", note: "青绿云水", src: "./assets/textiles/teal-cloud-water-v1.jpg" },
-    { type: "yellow-daisy", name: "明黄小碎花布", note: "明快小花", src: "./assets/textiles/yellow-daisy-v1.jpg" },
-    { type: "indigo-geometry", name: "紫蓝几何蜡染布", note: "几何蜡染", src: "./assets/textiles/indigo-geometry-v1.jpg" },
-    { type: "black-red-meander", name: "黑红回纹织锦布", note: "回纹织锦", src: "./assets/textiles/black-red-meander-v1.jpg" },
-    { type: "pale-blue-fish", name: "浅蓝鱼纹布", note: "浅蓝鱼纹", src: "./assets/textiles/pale-blue-fish-v1.jpg" }
+    { type: "indigo", name: "蓝印花布", note: "靛蓝花纹", src: "./assets/textiles/indigo-burst-v2.webp" },
+    { type: "coral", name: "牡丹花布", note: "朱红富贵", src: "./assets/textiles/coral-peony-v2.webp" },
+    { type: "botanical", name: "花草棉布", note: "米白小花", src: "./assets/textiles/ivory-botanical-v2.webp" },
+    { type: "cloudwater", name: "云水织锦", note: "青绿云水", src: "./assets/textiles/teal-cloud-water-v2.webp" },
+    { type: "yellow-daisy", name: "明黄小碎花布", note: "明快小花", src: "./assets/textiles/yellow-daisy-v2.webp" },
+    { type: "indigo-geometry", name: "紫蓝几何蜡染布", note: "几何蜡染", src: "./assets/textiles/indigo-geometry-v2.webp" },
+    { type: "black-red-meander", name: "黑红回纹织锦布", note: "回纹织锦", src: "./assets/textiles/black-red-meander-v2.webp" },
+    { type: "pale-blue-fish", name: "浅蓝鱼纹布", note: "浅蓝鱼纹", src: "./assets/textiles/pale-blue-fish-v2.webp" }
   ];
   const MOTIFS = [
-    { type: "lotus", name: "莲花", note: "清雅吉祥", src: "./assets/ui/motifs/lotus.png", image: true },
-    { type: "flame", name: "火焰纹", note: "光明勇气", src: "./assets/ui/motifs/flame.png", image: true },
-    { type: "cloud", name: "祥云", note: "平安如意", src: "./assets/ui/motifs/cloud.png", image: true },
-    { type: "crane", name: "仙鹤", note: "高洁长寿", src: "./assets/ui/motifs/crane.png", image: true },
-    { type: "ruyi", name: "如意", note: "顺心如意", src: "./assets/ui/motifs/ruyi.png", image: true },
-    { type: "water", name: "海浪", note: "勇敢向前", src: "./assets/ui/motifs/water.png", image: true },
-    { type: "meander", name: "回纹", note: "连续不断", src: "./assets/ui/motifs/meander.png", image: true },
-    { type: "bird", name: "花鸟", note: "春意盎然", src: "./assets/ui/motifs/bird.png", image: true }
+    { type: "lotus", name: "莲花", note: "清雅吉祥", src: "./assets/ui/motifs/lotus-v2.webp", image: true },
+    { type: "flame", name: "火焰纹", note: "光明勇气", src: "./assets/ui/motifs/flame-v2.webp", image: true },
+    { type: "cloud", name: "祥云", note: "平安如意", src: "./assets/ui/motifs/cloud-v2.webp", image: true },
+    { type: "crane", name: "仙鹤", note: "高洁长寿", src: "./assets/ui/motifs/crane-v2.webp", image: true },
+    { type: "ruyi", name: "如意", note: "顺心如意", src: "./assets/ui/motifs/ruyi-v2.webp", image: true },
+    { type: "water", name: "海浪", note: "勇敢向前", src: "./assets/ui/motifs/water-v2.webp", image: true },
+    { type: "meander", name: "回纹", note: "连续不断", src: "./assets/ui/motifs/meander-v2.webp", image: true },
+    { type: "bird", name: "花鸟", note: "春意盎然", src: "./assets/ui/motifs/bird-v2.webp", image: true }
   ];
   const ROLES = [
     { id: "fisher", name: "渔家福娃", src: "./assets/characters/fisher-v2.png" },
