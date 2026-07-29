@@ -12,16 +12,30 @@
   const VARIANT_NAMES = {
     "cross-top": "交领短衫",
     "wide-top": "宽袖上衣",
+    "stand-collar-top": "立领盘扣衫",
+    "diagonal-top": "斜襟短衫",
+    "diagonal-long-top": "斜襟长衫",
     trousers: "束口长裤",
-    skirt: "百褶长裙",
+    skirt: "简约长裙",
+    "pleated-long-skirt": "百褶长裙",
+    "embroidered-long-skirt": "绣花长裙",
+    "wide-leg-pants": "阔腿裤",
     "short-coat": "对襟短衫",
-    "long-robe": "广袖长袍"
+    "long-robe": "广袖长袍",
+    "cloud-shoulder": "云肩披肩",
+    "sleeveless-robe": "无袖罩袍",
+    "long-cape": "长披衫",
+    "short-vest": "短款坎肩"
   };
   const FABRICS = [
     { type: "indigo", name: "蓝印花布", note: "靛蓝花纹", src: "./assets/textiles/indigo-burst-v1.jpg" },
     { type: "coral", name: "牡丹花布", note: "朱红富贵", src: "./assets/textiles/coral-peony-v1.jpg" },
     { type: "botanical", name: "花草棉布", note: "米白小花", src: "./assets/textiles/ivory-botanical-v1.jpg" },
-    { type: "cloudwater", name: "云水织锦", note: "青绿云水", src: "./assets/textiles/teal-cloud-water-v1.jpg" }
+    { type: "cloudwater", name: "云水织锦", note: "青绿云水", src: "./assets/textiles/teal-cloud-water-v1.jpg" },
+    { type: "yellow-daisy", name: "明黄小碎花布", note: "明快小花", src: "./assets/textiles/yellow-daisy-v1.jpg" },
+    { type: "indigo-geometry", name: "紫蓝几何蜡染布", note: "几何蜡染", src: "./assets/textiles/indigo-geometry-v1.jpg" },
+    { type: "black-red-meander", name: "黑红回纹织锦布", note: "回纹织锦", src: "./assets/textiles/black-red-meander-v1.jpg" },
+    { type: "pale-blue-fish", name: "浅蓝鱼纹布", note: "浅蓝鱼纹", src: "./assets/textiles/pale-blue-fish-v1.jpg" }
   ];
   const MOTIFS = [
     { type: "lotus", name: "莲花", note: "清雅吉祥", src: "./assets/ui/motifs/lotus.png", image: true },
@@ -127,6 +141,7 @@
   let fitPointer = null;
   let animationFrame = 0;
   let toastTimer = 0;
+  const garmentThumbnailCache = {};
 
   function image(src) {
     return new Promise((resolve) => {
@@ -211,12 +226,40 @@
     return GARMENT_VARIANTS[state.activeGarment].find((item) => item.id === design.variant) || GARMENT_VARIANTS[state.activeGarment][0];
   }
 
+  function garmentThumbnail(type, variant) {
+    const key = `${type}:${variant.id}`;
+    if (garmentThumbnailCache[key]) return garmentThumbnailCache[key];
+    const preview = document.createElement("canvas");
+    preview.width = 240;
+    preview.height = 180;
+    drawDesign(preview.getContext("2d"), {
+      mode: "template",
+      variant: variant.id,
+      guideVisible: false,
+      baseColor: type === "outer" ? "#f3dbc0" : type === "bottom" ? "#dfeee8" : "#e9f3e8",
+      fabric: "",
+      strokes: [],
+      shapes: [],
+      patterns: [],
+      completed: true,
+      canvasWidth: 240,
+      canvasHeight: 180
+    }, type, preview.width, preview.height, {
+      showGuide: false,
+      showOutline: true,
+      showDetails: true,
+      showAssetDetails: false
+    });
+    garmentThumbnailCache[key] = preview.toDataURL("image/png");
+    return garmentThumbnailCache[key];
+  }
+
   function renderMaterialList() {
     const list = $("#materialList");
     if (state.materialTab === "garment") {
       list.innerHTML = GARMENT_VARIANTS[state.activeGarment].map((item) => `
         <button class="material-card garment ${currentDesign().variant === item.id ? "active" : ""}" data-variant="${item.id}">
-          <img src=".${item.thumb}" alt=""><span>${VARIANT_NAMES[item.id]}</span>
+          <img src="${garmentThumbnail(state.activeGarment, item)}" alt=""><span>${VARIANT_NAMES[item.id]}</span>
           <small>${currentDesign().variant === item.id ? "正在使用" : "点击换版"}</small>
         </button>`).join("");
       return;

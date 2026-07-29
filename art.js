@@ -39,6 +39,60 @@ const GARMENT_VARIANTS = {
         [0.75, 0.14], [0.64, 0.10], [0.58, 0.21], [0.42, 0.21]
       ],
       anchor: { x: 0.275, y: 0.39, w: 0.45, h: 0.35 }
+    },
+    {
+      id: "stand-collar-top",
+      name: "立领盘扣衫",
+      detail: "stand-collar-top",
+      paths: [[
+        ["M", 66, 24], ["Q", 80, 18, 94, 24], ["L", 100, 29], ["L", 122, 39],
+        ["L", 148, 78], ["Q", 151, 84, 145, 89], ["L", 127, 101], ["L", 112, 77],
+        ["L", 114, 132], ["Q", 80, 143, 46, 132], ["L", 48, 77], ["L", 33, 101],
+        ["L", 15, 89], ["Q", 9, 84, 12, 78], ["L", 38, 39], ["L", 60, 29], ["Z"]
+      ]],
+      points: [
+        [0.41, 0.12], [0.30, 0.18], [0.16, 0.28], [0.04, 0.58],
+        [0.18, 0.72], [0.30, 0.47], [0.29, 0.85], [0.71, 0.85],
+        [0.70, 0.47], [0.82, 0.72], [0.96, 0.58], [0.84, 0.28],
+        [0.70, 0.18], [0.59, 0.12]
+      ],
+      anchor: { x: 0.27, y: 0.385, w: 0.46, h: 0.35 }
+    },
+    {
+      id: "diagonal-top",
+      name: "斜襟短衫",
+      detail: "diagonal-top",
+      paths: [[
+        ["M", 62, 23], ["Q", 80, 18, 98, 23], ["L", 118, 35], ["L", 145, 67],
+        ["Q", 149, 74, 143, 80], ["L", 128, 94], ["L", 113, 73], ["L", 115, 129],
+        ["Q", 80, 140, 45, 129], ["L", 47, 73], ["L", 32, 94], ["L", 17, 80],
+        ["Q", 11, 74, 15, 67], ["L", 42, 35], ["Z"]
+      ]],
+      points: [
+        [0.39, 0.11], [0.27, 0.17], [0.15, 0.28], [0.05, 0.55],
+        [0.20, 0.68], [0.30, 0.46], [0.29, 0.83], [0.71, 0.83],
+        [0.70, 0.46], [0.80, 0.68], [0.95, 0.55], [0.85, 0.28],
+        [0.73, 0.17], [0.61, 0.11]
+      ],
+      anchor: { x: 0.275, y: 0.385, w: 0.45, h: 0.35 }
+    },
+    {
+      id: "diagonal-long-top",
+      name: "斜襟长衫",
+      detail: "diagonal-long-top",
+      paths: [[
+        ["M", 62, 21], ["Q", 80, 17, 98, 21], ["L", 118, 35], ["L", 145, 70],
+        ["Q", 149, 76, 143, 83], ["L", 126, 99], ["L", 112, 78], ["L", 121, 146],
+        ["Q", 80, 154, 39, 146], ["L", 48, 78], ["L", 34, 99], ["L", 17, 83],
+        ["Q", 11, 76, 15, 70], ["L", 42, 35], ["Z"]
+      ]],
+      points: [
+        [0.39, 0.10], [0.27, 0.17], [0.15, 0.29], [0.05, 0.56],
+        [0.21, 0.70], [0.30, 0.47], [0.24, 0.92], [0.76, 0.92],
+        [0.70, 0.47], [0.79, 0.70], [0.95, 0.56], [0.85, 0.29],
+        [0.73, 0.17], [0.61, 0.10]
+      ],
+      anchor: { x: 0.27, y: 0.38, w: 0.46, h: 0.43 }
     }
   ],
   bottom: [
@@ -61,7 +115,7 @@ const GARMENT_VARIANTS = {
     },
     {
       id: "skirt",
-      name: "百褶长裙",
+      name: "简约长裙",
       thumb: "/assets/garments/fitted/v1/thumb/skirt.png",
       detail: "skirt",
       paths: [[
@@ -73,6 +127,50 @@ const GARMENT_VARIANTS = {
         [0.12, 0.90], [0.27, 0.24]
       ],
       anchor: { x: 0.325, y: 0.555, w: 0.35, h: 0.33 }
+    },
+    {
+      id: "pleated-long-skirt",
+      name: "百褶长裙",
+      detail: "pleated-long-skirt",
+      paths: [[
+        ["M", 54, 20], ["Q", 80, 17, 106, 20], ["L", 110, 35], ["L", 135, 142],
+        ["Q", 80, 151, 25, 142], ["L", 50, 35], ["Z"]
+      ]],
+      points: [
+        [0.34, 0.10], [0.66, 0.10], [0.69, 0.22], [0.86, 0.91],
+        [0.14, 0.91], [0.31, 0.22]
+      ],
+      anchor: { x: 0.315, y: 0.555, w: 0.37, h: 0.34 }
+    },
+    {
+      id: "embroidered-long-skirt",
+      name: "绣花长裙",
+      detail: "embroidered-long-skirt",
+      paths: [[
+        ["M", 55, 20], ["Q", 80, 17, 105, 20], ["L", 109, 34], ["L", 132, 139],
+        ["Q", 80, 147, 28, 139], ["L", 51, 34], ["Z"]
+      ]],
+      points: [
+        [0.34, 0.10], [0.66, 0.10], [0.68, 0.22], [0.84, 0.89],
+        [0.16, 0.89], [0.32, 0.22]
+      ],
+      anchor: { x: 0.32, y: 0.555, w: 0.36, h: 0.34 }
+    },
+    {
+      id: "wide-leg-pants",
+      name: "阔腿裤",
+      detail: "wide-leg-pants",
+      paths: [[
+        ["M", 42, 22], ["Q", 80, 17, 118, 22], ["L", 120, 37], ["L", 136, 140],
+        ["Q", 111, 146, 87, 140], ["L", 80, 75], ["L", 73, 140],
+        ["Q", 49, 146, 24, 140], ["L", 40, 37], ["Z"]
+      ]],
+      points: [
+        [0.26, 0.11], [0.74, 0.11], [0.76, 0.24], [0.86, 0.90],
+        [0.55, 0.90], [0.50, 0.47], [0.45, 0.90], [0.14, 0.90],
+        [0.24, 0.24]
+      ],
+      anchor: { x: 0.32, y: 0.555, w: 0.36, h: 0.33 }
     }
   ],
   outer: [
@@ -151,6 +249,86 @@ const GARMENT_VARIANTS = {
         ]
       ],
       anchor: { x: 0.285, y: 0.38, w: 0.43, h: 0.43 }
+    },
+    {
+      id: "cloud-shoulder",
+      name: "云肩披肩",
+      detail: "cloud-shoulder",
+      paths: [[
+        ["M", 63, 27], ["Q", 80, 20, 97, 27], ["L", 119, 37],
+        ["Q", 137, 48, 149, 66], ["Q", 138, 78, 125, 87], ["Q", 116, 97, 106, 100],
+        ["Q", 96, 91, 80, 93], ["Q", 64, 91, 54, 100], ["Q", 44, 97, 35, 87],
+        ["Q", 22, 78, 11, 66], ["Q", 23, 48, 41, 37], ["Z"]
+      ]],
+      points: [
+        [0.39, 0.14], [0.26, 0.20], [0.08, 0.42], [0.20, 0.61],
+        [0.34, 0.66], [0.50, 0.59], [0.66, 0.66], [0.80, 0.61],
+        [0.92, 0.42], [0.74, 0.20], [0.61, 0.14]
+      ],
+      anchor: { x: 0.255, y: 0.382, w: 0.49, h: 0.22 }
+    },
+    {
+      id: "sleeveless-robe",
+      name: "无袖罩袍",
+      detail: "sleeveless-robe",
+      paths: [
+        [
+          ["M", 75, 20], ["Q", 62, 19, 53, 30], ["L", 43, 39], ["L", 45, 142],
+          ["Q", 57, 149, 74, 144], ["L", 78, 54], ["L", 67, 35], ["Z"]
+        ],
+        [
+          ["M", 85, 20], ["Q", 98, 19, 107, 30], ["L", 117, 39], ["L", 115, 142],
+          ["Q", 103, 149, 86, 144], ["L", 82, 54], ["L", 93, 35], ["Z"]
+        ]
+      ],
+      points: [
+        [0.47, 0.11], [0.34, 0.17], [0.27, 0.25], [0.28, 0.91],
+        [0.46, 0.92], [0.54, 0.92], [0.72, 0.91], [0.73, 0.25],
+        [0.66, 0.17], [0.53, 0.11]
+      ],
+      anchor: { x: 0.31, y: 0.38, w: 0.38, h: 0.47 }
+    },
+    {
+      id: "long-cape",
+      name: "长披衫",
+      detail: "long-cape",
+      paths: [
+        [
+          ["M", 75, 18], ["Q", 60, 18, 47, 29], ["L", 15, 58], ["Q", 8, 65, 13, 75],
+          ["L", 33, 103], ["L", 48, 86], ["L", 31, 147], ["Q", 55, 154, 74, 147],
+          ["L", 78, 52], ["L", 66, 31], ["Z"]
+        ],
+        [
+          ["M", 85, 18], ["Q", 100, 18, 113, 29], ["L", 145, 58], ["Q", 152, 65, 147, 75],
+          ["L", 127, 103], ["L", 112, 86], ["L", 129, 147], ["Q", 105, 154, 86, 147],
+          ["L", 82, 52], ["L", 94, 31], ["Z"]
+        ]
+      ],
+      points: [
+        [0.47, 0.10], [0.30, 0.17], [0.08, 0.39], [0.20, 0.68],
+        [0.30, 0.54], [0.18, 0.94], [0.46, 0.94], [0.54, 0.94],
+        [0.82, 0.94], [0.70, 0.54], [0.80, 0.68], [0.92, 0.39],
+        [0.70, 0.17], [0.53, 0.10]
+      ],
+      anchor: { x: 0.27, y: 0.377, w: 0.46, h: 0.48 }
+    },
+    {
+      id: "short-vest",
+      name: "短款坎肩",
+      detail: "short-vest",
+      paths: [[
+        ["M", 65, 24], ["Q", 80, 18, 95, 24], ["L", 119, 37], ["L", 144, 68],
+        ["Q", 148, 74, 142, 80], ["L", 125, 94], ["L", 111, 74], ["L", 115, 128],
+        ["Q", 80, 137, 45, 128], ["L", 49, 74], ["L", 35, 94], ["L", 18, 80],
+        ["Q", 12, 74, 16, 68], ["L", 41, 37], ["Z"]
+      ]],
+      points: [
+        [0.41, 0.12], [0.27, 0.18], [0.14, 0.29], [0.05, 0.55],
+        [0.21, 0.68], [0.31, 0.46], [0.29, 0.82], [0.71, 0.82],
+        [0.69, 0.46], [0.79, 0.68], [0.95, 0.55], [0.86, 0.29],
+        [0.73, 0.18], [0.59, 0.12]
+      ],
+      anchor: { x: 0.275, y: 0.382, w: 0.45, h: 0.32 }
     }
   ]
 };
@@ -164,15 +342,25 @@ const GARMENTS = {
 const OUTFIT_FIT = {
   top: {
     "cross-top": { x: 0.2773, y: 0.3887, w: 0.4453, h: 0.2715 },
-    "wide-top": { x: 0.2656, y: 0.3906, w: 0.4688, h: 0.2813 }
+    "wide-top": { x: 0.2656, y: 0.3906, w: 0.4688, h: 0.2813 },
+    "stand-collar-top": { x: 0.2676, y: 0.3887, w: 0.4648, h: 0.2813 },
+    "diagonal-top": { x: 0.2734, y: 0.3887, w: 0.4531, h: 0.2773 },
+    "diagonal-long-top": { x: 0.2695, y: 0.3867, w: 0.4609, h: 0.3496 }
   },
   bottom: {
     trousers: { x: 0.3789, y: 0.5703, w: 0.2422, h: 0.3105 },
-    skirt: { x: 0.3535, y: 0.5703, w: 0.2930, h: 0.3027 }
+    skirt: { x: 0.3535, y: 0.5703, w: 0.2930, h: 0.3027 },
+    "pleated-long-skirt": { x: 0.3438, y: 0.5684, w: 0.3125, h: 0.3145 },
+    "embroidered-long-skirt": { x: 0.3496, y: 0.5684, w: 0.3008, h: 0.3125 },
+    "wide-leg-pants": { x: 0.3633, y: 0.5684, w: 0.2734, h: 0.3164 }
   },
   outer: {
     "short-coat": { x: 0.2676, y: 0.3828, w: 0.4648, h: 0.2773 },
-    "long-robe": { x: 0.2598, y: 0.3789, w: 0.4805, h: 0.4902 }
+    "long-robe": { x: 0.2598, y: 0.3789, w: 0.4805, h: 0.4902 },
+    "cloud-shoulder": { x: 0.2539, y: 0.3828, w: 0.4922, h: 0.2188 },
+    "sleeveless-robe": { x: 0.3125, y: 0.3828, w: 0.3750, h: 0.4746 },
+    "long-cape": { x: 0.2480, y: 0.3789, w: 0.5039, h: 0.4902 },
+    "short-vest": { x: 0.2734, y: 0.3828, w: 0.4531, h: 0.2773 }
   }
 };
 
@@ -574,6 +762,33 @@ function drawGarmentDetails(ctx, garmentType, bounds, variantId, fitted = false)
     ctx.lineTo(x + w * 0.15, y + h * 0.70);
     ctx.moveTo(x + w * 0.95, y + h * 0.60);
     ctx.lineTo(x + w * 0.85, y + h * 0.70);
+  } else if (spec.detail === "stand-collar-top") {
+    ctx.moveTo(x + w * 0.44, y + h * 0.18);
+    ctx.quadraticCurveTo(x + w * 0.50, y + h * 0.13, x + w * 0.56, y + h * 0.18);
+    ctx.moveTo(x + w * 0.50, y + h * 0.18);
+    ctx.lineTo(x + w * 0.50, y + h * 0.78);
+    [0.34, 0.48, 0.62].forEach((ratio) => {
+      ctx.moveTo(x + w * 0.48, y + h * ratio);
+      ctx.quadraticCurveTo(x + w * 0.54, y + h * ratio, x + w * 0.55, y + h * (ratio + 0.03));
+    });
+    ctx.moveTo(x + w * 0.05, y + h * 0.60);
+    ctx.lineTo(x + w * 0.17, y + h * 0.71);
+    ctx.moveTo(x + w * 0.95, y + h * 0.60);
+    ctx.lineTo(x + w * 0.83, y + h * 0.71);
+  } else if (spec.detail === "diagonal-top" || spec.detail === "diagonal-long-top") {
+    ctx.moveTo(x + w * 0.40, y + h * 0.17);
+    ctx.quadraticCurveTo(x + w * 0.48, y + h * 0.28, x + w * 0.60, y + h * 0.38);
+    ctx.quadraticCurveTo(x + w * 0.54, y + h * 0.53, x + w * 0.47, y + h * 0.62);
+    ctx.moveTo(x + w * 0.08, y + h * 0.58);
+    ctx.lineTo(x + w * 0.20, y + h * 0.69);
+    ctx.moveTo(x + w * 0.92, y + h * 0.58);
+    ctx.lineTo(x + w * 0.80, y + h * 0.69);
+    ctx.moveTo(x + w * 0.31, y + h * (spec.detail === "diagonal-long-top" ? 0.82 : 0.73));
+    ctx.lineTo(x + w * 0.69, y + h * (spec.detail === "diagonal-long-top" ? 0.82 : 0.73));
+    if (spec.detail === "diagonal-long-top") {
+      ctx.moveTo(x + w * 0.58, y + h * 0.43);
+      ctx.quadraticCurveTo(x + w * 0.65, y + h * 0.51, x + w * 0.62, y + h * 0.68);
+    }
   } else if (spec.detail === "trousers") {
     ctx.moveTo(x + w * 0.27, y + h * 0.20);
     ctx.lineTo(x + w * 0.73, y + h * 0.20);
@@ -594,6 +809,37 @@ function drawGarmentDetails(ctx, garmentType, bounds, variantId, fitted = false)
     ctx.lineTo(x + w * 0.84, y + h * 0.78);
     ctx.moveTo(x + w * 0.14, y + h * 0.84);
     ctx.lineTo(x + w * 0.86, y + h * 0.84);
+  } else if (spec.detail === "pleated-long-skirt") {
+    ctx.moveTo(x + w * 0.31, y + h * 0.19);
+    ctx.lineTo(x + w * 0.69, y + h * 0.19);
+    [0.34, 0.42, 0.50, 0.58, 0.66].forEach((ratio) => {
+      ctx.moveTo(x + w * (0.50 + (ratio - 0.50) * 0.58), y + h * 0.24);
+      ctx.lineTo(x + w * ratio, y + h * 0.87);
+    });
+  } else if (spec.detail === "embroidered-long-skirt") {
+    ctx.moveTo(x + w * 0.31, y + h * 0.19);
+    ctx.lineTo(x + w * 0.69, y + h * 0.19);
+    [0.40, 0.50, 0.60].forEach((ratio) => {
+      ctx.moveTo(x + w * (0.50 + (ratio - 0.50) * 0.66), y + h * 0.26);
+      ctx.lineTo(x + w * ratio, y + h * 0.82);
+    });
+    ctx.moveTo(x + w * 0.16, y + h * 0.80);
+    ctx.quadraticCurveTo(x + w * 0.50, y + h * 0.88, x + w * 0.84, y + h * 0.80);
+    ctx.moveTo(x + w * 0.15, y + h * 0.86);
+    ctx.quadraticCurveTo(x + w * 0.50, y + h * 0.94, x + w * 0.85, y + h * 0.86);
+  } else if (spec.detail === "wide-leg-pants") {
+    ctx.moveTo(x + w * 0.25, y + h * 0.19);
+    ctx.lineTo(x + w * 0.75, y + h * 0.19);
+    ctx.moveTo(x + w * 0.50, y + h * 0.22);
+    ctx.lineTo(x + w * 0.50, y + h * 0.49);
+    ctx.moveTo(x + w * 0.13, y + h * 0.84);
+    ctx.lineTo(x + w * 0.44, y + h * 0.84);
+    ctx.moveTo(x + w * 0.56, y + h * 0.84);
+    ctx.lineTo(x + w * 0.87, y + h * 0.84);
+    ctx.moveTo(x + w * 0.30, y + h * 0.27);
+    ctx.quadraticCurveTo(x + w * 0.24, y + h * 0.43, x + w * 0.22, y + h * 0.57);
+    ctx.moveTo(x + w * 0.70, y + h * 0.27);
+    ctx.quadraticCurveTo(x + w * 0.76, y + h * 0.43, x + w * 0.78, y + h * 0.57);
   } else if (spec.detail === "short-coat" || spec.detail === "long-robe") {
     ctx.moveTo(x + w * 0.40, y + h * 0.13);
     ctx.quadraticCurveTo(x + w * 0.45, y + h * 0.23, x + w * 0.47, y + h * 0.36);
@@ -611,6 +857,47 @@ function drawGarmentDetails(ctx, garmentType, bounds, variantId, fitted = false)
       ctx.moveTo(x + w * 0.57, y + h * 0.86);
       ctx.quadraticCurveTo(x + w * 0.65, y + h * 0.88, x + w * 0.75, y + h * 0.84);
     }
+  } else if (spec.detail === "cloud-shoulder") {
+    ctx.moveTo(x + w * 0.50, y + h * 0.18);
+    ctx.lineTo(x + w * 0.50, y + h * 0.60);
+    ctx.moveTo(x + w * 0.22, y + h * 0.50);
+    ctx.quadraticCurveTo(x + w * 0.34, y + h * 0.67, x + w * 0.50, y + h * 0.58);
+    ctx.quadraticCurveTo(x + w * 0.66, y + h * 0.67, x + w * 0.78, y + h * 0.50);
+    ctx.moveTo(x + w * 0.30, y + h * 0.35);
+    ctx.quadraticCurveTo(x + w * 0.50, y + h * 0.50, x + w * 0.70, y + h * 0.35);
+  } else if (spec.detail === "sleeveless-robe") {
+    ctx.moveTo(x + w * 0.43, y + h * 0.12);
+    ctx.quadraticCurveTo(x + w * 0.47, y + h * 0.24, x + w * 0.48, y + h * 0.88);
+    ctx.moveTo(x + w * 0.57, y + h * 0.12);
+    ctx.quadraticCurveTo(x + w * 0.53, y + h * 0.24, x + w * 0.52, y + h * 0.88);
+    ctx.moveTo(x + w * 0.28, y + h * 0.78);
+    ctx.lineTo(x + w * 0.28, y + h * 0.90);
+    ctx.moveTo(x + w * 0.72, y + h * 0.78);
+    ctx.lineTo(x + w * 0.72, y + h * 0.90);
+  } else if (spec.detail === "long-cape") {
+    ctx.moveTo(x + w * 0.40, y + h * 0.12);
+    ctx.quadraticCurveTo(x + w * 0.46, y + h * 0.23, x + w * 0.47, y + h * 0.90);
+    ctx.moveTo(x + w * 0.60, y + h * 0.12);
+    ctx.quadraticCurveTo(x + w * 0.54, y + h * 0.23, x + w * 0.53, y + h * 0.90);
+    ctx.moveTo(x + w * 0.12, y + h * 0.42);
+    ctx.lineTo(x + w * 0.23, y + h * 0.61);
+    ctx.moveTo(x + w * 0.88, y + h * 0.42);
+    ctx.lineTo(x + w * 0.77, y + h * 0.61);
+    ctx.moveTo(x + w * 0.20, y + h * 0.87);
+    ctx.quadraticCurveTo(x + w * 0.34, y + h * 0.94, x + w * 0.46, y + h * 0.90);
+    ctx.moveTo(x + w * 0.54, y + h * 0.90);
+    ctx.quadraticCurveTo(x + w * 0.66, y + h * 0.94, x + w * 0.80, y + h * 0.87);
+  } else if (spec.detail === "short-vest") {
+    ctx.moveTo(x + w * 0.40, y + h * 0.17);
+    ctx.quadraticCurveTo(x + w * 0.48, y + h * 0.28, x + w * 0.61, y + h * 0.42);
+    ctx.moveTo(x + w * 0.60, y + h * 0.17);
+    ctx.quadraticCurveTo(x + w * 0.52, y + h * 0.29, x + w * 0.44, y + h * 0.40);
+    ctx.moveTo(x + w * 0.31, y + h * 0.72);
+    ctx.lineTo(x + w * 0.69, y + h * 0.72);
+    ctx.moveTo(x + w * 0.08, y + h * 0.58);
+    ctx.lineTo(x + w * 0.20, y + h * 0.69);
+    ctx.moveTo(x + w * 0.92, y + h * 0.58);
+    ctx.lineTo(x + w * 0.80, y + h * 0.69);
   }
 
   ctx.strokeStyle = "rgba(255, 249, 230, 0.82)";
