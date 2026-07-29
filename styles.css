@@ -90,7 +90,8 @@ button:disabled { cursor: not-allowed; opacity: .48; }
 }
 .material-card.active { border: 2px solid #df9068; background: #fff7ec; }
 .material-card img { width: 62px; height: 62px; border-radius: 11px; object-fit: cover; }
-.material-card.garment img { width: 82px; height: 72px; object-fit: contain; }
+.material-card.garment img,
+.material-card.garment canvas { width: 82px; height: 72px; object-fit: contain; touch-action: auto; }
 .material-card span { max-width: 100%; font-weight: 700; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .material-card small { color: #a08e7f; font-size: 10px; }
 .upload-card { border: 1px dashed #83aa9d; color: var(--green-dark); background: #f0f8f4; }
@@ -263,7 +264,8 @@ h2 { margin: 6px 0 16px; font: 700 26px "STKaiti", "KaiTi", serif; }
   .material-tabs button { min-height: 46px; border-radius: 12px; }
   .material-card { min-height: 68px; padding: 4px; }
   .material-card img { width: 42px; height: 42px; }
-  .material-card.garment img { width: 62px; height: 48px; }
+  .material-card.garment img,
+  .material-card.garment canvas { width: 62px; height: 48px; }
   .canvas-card { padding: 6px; grid-template-rows: 30px minmax(0, 1fr) 42px; }
   .canvas-heading > span:first-child { padding: 3px 9px; }
   .zoom-control { right: 8px; bottom: 8px; height: 34px; grid-template-columns: 40px 70px 40px; }
@@ -339,7 +341,8 @@ h2 { margin: 6px 0 16px; font: 700 26px "STKaiti", "KaiTi", serif; }
   }
   .material-card { flex: 0 0 96px; min-height: 96px; }
   .material-card img { width: 52px; height: 52px; }
-  .material-card.garment img { width: 70px; height: 58px; }
+  .material-card.garment img,
+  .material-card.garment canvas { width: 70px; height: 58px; }
   .tool-list { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .tool-button { min-height: 54px; }
   .closet { margin-top: 9px; }
