@@ -1,0 +1,112 @@
+:root {
+  color-scheme: light;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: #f7f4ec;
+  color: #214f46;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 56px minmax(0, 1fr);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: max(8px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) 8px max(14px, env(safe-area-inset-left));
+  border-bottom: 1px solid #d9e3dd;
+  background: rgba(255, 253, 247, 0.96);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.mark {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 11px;
+  background: #4f9d8b;
+  color: #fff;
+  font-size: 14px;
+}
+
+.open-button {
+  flex: none;
+  border: 1px solid #4f9d8b;
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: #276b5d;
+  background: #edf7f3;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.chat-shell,
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.chat-shell {
+  min-height: 0;
+  background: #fff;
+}
+
+iframe {
+  display: block;
+  border: 0;
+}
+
+.fallback {
+  position: fixed;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 18px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(33, 79, 70, 0.12);
+}
+
+@media (max-width: 640px) {
+  body {
+    grid-template-rows: 50px minmax(0, 1fr);
+  }
+
+  .toolbar {
+    padding-block: 6px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    font-size: 12px;
+  }
+}
