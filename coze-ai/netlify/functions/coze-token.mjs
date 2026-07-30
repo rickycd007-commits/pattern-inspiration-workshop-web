@@ -17,6 +17,24 @@ function json(statusCode, body) {
   };
 }
 
+function normalizePrivateKey(value) {
+  const privateKey = value.trim().replace(/\\n/g, '\n').replace(/\r\n?/g, '\n');
+  const match = privateKey.match(/-----BEGIN ([A-Z ]*PRIVATE KEY)-----([\s\S]*?)-----END \1-----/);
+
+  if (!match) {
+    return privateKey;
+  }
+
+  const body = match[2].replace(/\s+/g, '');
+  const lines = body.match(/.{1,64}/g) || [];
+
+  return [
+    `-----BEGIN ${match[1]}-----`,
+    ...lines,
+    `-----END ${match[1]}-----`,
+  ].join('\n');
+}
+
 export async function handler(event) {
   if (event.httpMethod !== 'POST') {
     return json(405, { message: '仅支持 POST 请求' });
@@ -35,7 +53,7 @@ export async function handler(event) {
       appId: process.env.COZE_CLIENT_ID,
       aud: 'api.coze.cn',
       keyid: process.env.COZE_PUBLIC_KEY_ID,
-      privateKey: process.env.COZE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      privateKey: normalizePrivateKey(process.env.COZE_PRIVATE_KEY),
       durationSeconds: 900,
     });
 
