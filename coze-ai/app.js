@@ -49,12 +49,14 @@ async function startChat() {
   try {
     await requestAccessToken();
 
-    if (!window.CozeWebSDK?.init) {
+    const cozeWebSDK = window.cozeWebSDK || window.CozeWebSDK;
+
+    if (!cozeWebSDK?.init) {
       throw new Error('问答组件加载失败');
     }
 
     if (!sdkStarted) {
-      window.CozeWebSDK.init({
+      cozeWebSDK.init({
         projectId: PROJECT_ID,
         refreshToken: requestAccessToken,
       });
