@@ -5,6 +5,7 @@ const loadingCard = document.querySelector('#loading-card');
 const loadingMessage = document.querySelector('#loading-message');
 const retryButton = document.querySelector('#retry-button');
 const serviceStatus = document.querySelector('#service-status');
+const sdkContainer = document.querySelector('#coze-sdk-container');
 
 let sdkStarted = false;
 let cachedToken = '';
@@ -58,6 +59,9 @@ async function startChat() {
     if (!sdkStarted) {
       cozeWebSDK.init({
         projectId: PROJECT_ID,
+        container: sdkContainer,
+        className: 'coze-sdk-frame',
+        style: 'width: 100%; height: 100%; border: 0;',
         refreshToken: requestAccessToken,
       });
       sdkStarted = true;
