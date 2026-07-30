@@ -1,0 +1,9 @@
+{
+  "name": "vr-knowledge-chat",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@coze/api": "1.0.21"
+  }
+}
