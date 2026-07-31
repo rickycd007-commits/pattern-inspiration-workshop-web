@@ -7,7 +7,7 @@ const retryButton = document.querySelector('#retry-button');
 const serviceStatus = document.querySelector('#service-status');
 const sdkContainer = document.querySelector('#coze-sdk-container');
 
-let chatClient = null;
+let sdkStarted = false;
 let cachedToken = '';
 let tokenExpiresAt = 0;
 
@@ -42,62 +42,29 @@ function showError(error) {
   serviceStatus.textContent = '连接失败';
 }
 
-function getChatSDK() {
-  return window.CozeWebSDK || window.cozeWebSDK;
-}
-
 async function startChat() {
   retryButton.hidden = true;
-  loadingCard.hidden = false;
   loadingMessage.textContent = '正在获取临时访问凭证，请稍候。';
   serviceStatus.textContent = '正在连接知识库';
 
   try {
-    const token = await requestAccessToken();
-    const CozeWebSDK = getChatSDK();
+    await requestAccessToken();
 
-    if (!CozeWebSDK?.WebChatClient) {
+    const cozeWebSDK = window.cozeWebSDK || window.CozeWebSDK;
+
+    if (!cozeWebSDK?.init) {
       throw new Error('问答组件加载失败');
     }
 
-    if (!chatClient) {
-      chatClient = new CozeWebSDK.WebChatClient({
-        config: {
-          type: 'app',
-          appInfo: {
-            appId: PROJECT_ID,
-          },
-        },
-        auth: {
-          type: 'token',
-          token,
-          onRefreshToken: requestAccessToken,
-        },
-        ui: {
-          base: {
-            layout: 'pc',
-          },
-          asstBtn: {
-            isNeed: false,
-          },
-          header: {
-            isNeed: false,
-          },
-          footer: {
-            isNeed: false,
-          },
-          chatBot: {
-            el: sdkContainer,
-            title: 'VR 知识库问答',
-            uploadable: false,
-            width: '100%',
-          },
-        },
+    if (!sdkStarted) {
+      cozeWebSDK.init({
+        projectId: PROJECT_ID,
+        container: sdkContainer,
+        className: 'coze-sdk-frame',
+        style: 'width: 100%; height: 100%; border: 0;',
+        refreshToken: requestAccessToken,
       });
-    }
-
-    if (typeof chatClient.showChatBot === 'function') {
-      chatClient.showChatBot();
+      sdkStarted = true;
     }
 
     loadingCard.hidden = true;
