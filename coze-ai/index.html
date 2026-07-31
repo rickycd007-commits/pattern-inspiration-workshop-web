@@ -16,23 +16,26 @@
     <span class="service-status" id="service-status">正在连接知识库</span>
   </header>
 
-  <main class="chat-shell" id="chat-shell">
-    <div class="coze-sdk-host" id="coze-sdk-container"></div>
-    <section class="loading-card" id="loading-card" role="status" aria-live="polite">
-      <span class="loading-dot" aria-hidden="true"></span>
-      <h1>正在打开 AI 问答</h1>
-      <p id="loading-message">正在获取临时访问凭证，请稍候。</p>
-      <button class="retry-button" id="retry-button" type="button" hidden>重新连接</button>
-    </section>
+  <main class="chat-shell">
+    <div class="chat-panel">
+      <div class="brand-avatar" aria-hidden="true">
+        <span class="avatar-face">娃</span>
+      </div>
+      <div class="coze-sdk-host" id="coze-sdk-container"></div>
+      <section class="loading-card" id="loading-card" role="status" aria-live="polite">
+        <span class="loading-dot" aria-hidden="true"></span>
+        <h1>正在打开 AI 问答</h1>
+        <p id="loading-message">正在获取临时访问凭证，请稍候。</p>
+        <button class="retry-button" id="retry-button" type="button" hidden>重新连接</button>
+      </section>
+    </div>
   </main>
 
   <noscript>
-    <p class="fallback">
-      当前浏览器未启用 JavaScript，无法使用 AI 问答。
-    </p>
+    <p class="fallback">当前浏览器未启用 JavaScript，无法使用 AI 问答。</p>
   </noscript>
 
-  <script src="https://lf-cdn.coze.cn/obj/unpkg/latest/coze/web-sdk/dist/js-umd/index.min.js"></script>
+  <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.3/libs/cn/index.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
